@@ -1,0 +1,31 @@
+int duration;
+int distance;
+
+void setup() {
+pinMode (6,INPUT);
+pinMode (8,OUTPUT);
+pinMode (10,OUTPUT);// bu
+Serial.begin(9600);
+noTone(10);
+}
+
+void loop() {
+ digitalWrite(8,HIGH);
+ delay(100);
+ digitalWrite(8,LOW);
+ duration = pulseIn(6,HIGH);
+ distance = duration * 0.034/2 ;
+ Serial.print("Distance: ");
+ Serial.println(distance);
+  if (distance < 30)
+  {
+  tone(10,10);
+  delay(100);
+  noTone(10);
+  delay(100);
+  }
+  else
+  {
+    noTone(10);
+  }
+}
